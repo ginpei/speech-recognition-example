@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Speech Recognition Example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Speech Recognition Example</h1>
+  <div id="app">
+    <p>
+      You need Google Chrome (2019-04-09).
+      /
+      <a href="minimal.html">Minimal example</a>
+      /
+      <a href="https://w3c.github.io/speech-api/">Spec</a>
+      /
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition">MDN</a>
+      /
+      <a href="https://caniuse.com/#feat=speech-recognition">Can I use</a>
+    <p>
+      Languages:
+      <a href="/speech-recognition-example/">Default</a>
+      ,
+      <a href="/speech-recognition-example/?lang=en">EN (English)</a>
+      ,
+      <a href="/speech-recognition-example/?lang=ja">JA (日本語)</a>
+    </p>
+    <p>
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+      <span id="recognitionStatus" class="status" data-on="false">Recognition</span>
+      <span id="audioStatus" class="status" data-on="false">Audio</span>
+      <span id="soundStatus" class="status" data-on="false">Sound</span>
+      <span id="speechStatus" class="status" data-on="false">Speech</span>
+    </p>
+    <p id="stopPhraseInstruction">Say <input type="text" id="stopPhrase" value="stop"> to stop.</p>
+    <p id="error"></p>
+    <p>
+      <span id="listening">🔊</span>
+      <span id="result"></span>
+    </p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

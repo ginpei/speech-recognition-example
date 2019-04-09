@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Speech Recognition Example (Minimal)</title>
+</head>
+<body>
+  <h1>Speech Recognition Example (Minimal)</h1>
+  <button id="start">Start</button>
+  <p id="result"></p>
+  <script>
+// fallback
+// (only webkitSpeechRecognition found (2019-04-09))
+if (!window.SpeechRecognition) {
+  window.SpeechRecognition = window.webkitSpeechRecognition
+    || window.mozSpeechRecognition;
+}
+
+// Yay!
+const sr = new window.SpeechRecognition();
+
+// log all events
+const eventTypes = [
+  'audioend',
+  'audiostart',
+  'end',
+  'error',
+  'nomatch', // seems not working now (2019-04-09)
+  'result',
+  'soundend',
+  'soundstart',
+  'speechend',
+  'speechstart',
+  'start',
+];
+const listener = (event) => console.log(event.type, event);
+eventTypes.forEach((type) => sr.addEventListener(type, listener));
+
+// show result
+sr.addEventListener('result', (event) => {
+  const text = event.results[0][0].transcript;
+  document.querySelector('#result').textContent = text;
+});
+
+// click to start
+document.querySelector('#start').addEventListener('click', () => {
+  sr.start();
+});
+  </script>
+</body>
+</html>
